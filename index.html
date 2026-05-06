@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Megalodonto Notícias: portal com manchetes, opinião, destaques e cobertura completa." />
+  <meta name="keywords" content="notícias, jornal, megalodonto, portal" />
+  <meta name="author" content="Megalodonto Notícias" />
+  <title>Megalodonto Notícias</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #111827;
+      --primary: #06b6d4;
+      --accent: #22c55e;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --danger: #ef4444;
+      --white: #ffffff;
+      --shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+      --radius: 16px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(180deg, #020617 0%, #0b1225 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: 0 auto;
+    }
+
+    header {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(6px);
+      background: rgba(2, 6, 23, 0.75);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--white);
+      font-weight: 800;
+      letter-spacing: .4px;
+      font-size: 1.1rem;
+    }
+
+    .logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #67e8f9, #0891b2 60%, #164e63);
+      display: grid;
+      place-items: center;
+      color: #082f49;
+      font-weight: 900;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: var(--text);
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 999px;
+      transition: .2s;
+    }
+
+    nav a:hover {
+      background: rgba(34, 197, 94, 0.15);
+      color: #86efac;
+    }
+
+    .hero {
+      padding: 30px 0 24px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(6, 182, 212, 0.15);
+      border: 1px solid rgba(34, 211, 238, 0.4);
+      color: #67e8f9;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: .8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .4px;
+    }
+
+    h1 {
+      font-size: clamp(1.8rem, 2.8vw, 3rem);
+      line-height: 1.15;
+      margin-top: 8px;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      max-width: 72ch;
+    }
+
+    main {
+      padding-bottom: 40px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    article, aside, .newsletter {
+      background: linear-gradient(180deg, #0b1329, #0a1022);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    article {
+      padding: 24px;
+    }
+
+    .meta {
+      display: flex;
+      gap: 14px;
+      font-size: .92rem;
+      color: var(--muted);
+      margin: 8px 0 16px;
+      flex-wrap: wrap;
+    }
+
+    .alert {
+      border-left: 4px solid var(--danger);
+      background: rgba(239, 68, 68, 0.08);
+      padding: 12px;
+      border-radius: 10px;
+      margin: 18px 0;
+      color: #fecaca;
+    }
+
+    article p + p {
+      margin-top: 14px;
+    }
+
+    article h2 {
+      margin-top: 18px;
+      font-size: 1.35rem;
+      color: #a5f3fc;
+    }
+
+    aside {
+      padding: 20px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 12px;
+      padding: 14px;
+    }
+
+    .card h3 {
+      font-size: 1rem;
+      margin-bottom: 6px;
+      color: #bbf7d0;
+    }
+
+    .newsletter {
+      margin-top: 24px;
+      padding: 20px;
+    }
+
+    .newsletter form {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    input[type="email"] {
+      background: #0f172a;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: var(--text);
+      border-radius: 10px;
+      padding: 12px;
+      outline: none;
+    }
+
+    button {
+      border: none;
+      background: linear-gradient(120deg, #06b6d4, #22c55e);
+      color: #062012;
+      font-weight: 800;
+      border-radius: 10px;
+      padding: 12px 16px;
+      cursor: pointer;
+      transition: transform .15s;
+    }
+
+    button:hover { transform: translateY(-1px); }
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+
+    footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 22px 0;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 900px) {
+      .grid { grid-template-columns: 1fr; }
+      .newsletter form { grid-template-columns: 1fr; }
+      nav ul { justify-content: flex-end; }
+    }
+
+    @media (max-width: 600px) {
+      .topbar { flex-direction: column; align-items: flex-start; }
+      nav ul { justify-content: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container topbar">
+      <a href="#" class="brand" aria-label="Página inicial Megalodonto Notícias">
+        <span class="logo">M</span>
+        <span>MEGALODONTO NOTÍCIAS</span>
+      </a>
+      <nav aria-label="Navegação principal">
+        <ul>
+          <li><a href="#">Início</a></li>
+          <li><a href="#">Política</a></li>
+          <li><a href="#">Entretenimento</a></li>
+          <li><a href="#">Tecnologia</a></li>
+          <li><a href="#">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <span class="badge">Plantão</span>
+      <h1>Megalodonto Notícias enfrenta onda de cancelamento nas redes sociais</h1>
+      <p class="subtitle">Após a publicação de um conteúdo controverso, a marca virou alvo de críticas intensas online, gerando queda de patrocinadores e pressão por posicionamento oficial.</p>
+    </section>
+
+    <section class="grid" aria-label="Conteúdo principal">
+      <article>
+        <div class="meta">
+          <span>📅 Publicado em 06/05/2026</span>
+          <span>✍️ Redação Megalodonto</span>
+          <span>⏱️ Leitura: 4 min</span>
+        </div>
+
+        <div class="alert" role="note">
+          Nota: esta matéria é uma simulação fictícia para fins de demonstração de layout jornalístico.
+        </div>
+
+        <p>O portal <strong>Megalodonto Notícias</strong> se tornou um dos assuntos mais comentados do dia depois de uma sequência de postagens que desagradou parte do público. Nas últimas horas, hashtags pedindo o boicote da marca subiram rapidamente entre os trending topics.</p>
+
+        <p>Segundo monitoramento de plataformas digitais, a repercussão negativa foi impulsionada por influenciadores e ex-parceiros comerciais, que cobraram retratação pública e revisão da linha editorial. Em resposta, o time interno informou que está "avaliando os próximos passos" e prometeu publicar um comunicado oficial.</p>
+
+        <h2>Impactos imediatos</h2>
+        <p>Entre os efeitos já percebidos estão a perda de anunciantes, redução no alcance orgânico e crescimento de comentários críticos em praticamente todos os canais da empresa. Especialistas afirmam que crises reputacionais exigem respostas rápidas, transparentes e consistentes.</p>
+
+        <h2>Próximos passos</h2>
+        <p>Analistas de comunicação apontam que a recuperação da confiança do público dependerá de ações concretas, incluindo revisão de políticas, abertura ao diálogo e alinhamento entre discurso e prática. Até o fechamento desta edição, a empresa não havia divulgado um novo posicionamento detalhado.</p>
+      </article>
+
+      <aside>
+        <div class="card">
+          <h3>📌 Em alta</h3>
+          <p>Boicote digital, gestão de crise e reputação de marca dominam as conversas online nesta semana.</p>
+        </div>
+        <div class="card">
+          <h3>🎙️ Opinião</h3>
+          <p>Cancelamento nas redes é justiça social ou tribunal da internet? Especialistas divergem.</p>
+        </div>
+        <div class="card">
+          <h3>📊 Números</h3>
+          <p>+180% de menções nas últimas 24 horas e pico de engajamento negativo em plataformas sociais.</p>
+        </div>
+      </aside>
+    </section>
+
+    <section class="newsletter" aria-label="Inscrição na newsletter">
+      <h2>Receba atualizações em primeira mão</h2>
+      <p>Inscreva-se na newsletter do Megalodonto Notícias.</p>
+      <form onsubmit="event.preventDefault(); alert('Inscrição recebida com sucesso!');">
+        <label for="email" class="visually-hidden">E-mail</label>
+        <input id="email" type="email" placeholder="seuemail@exemplo.com" required />
+        <button type="submit">Assinar</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 Megalodonto Notícias — Todos os direitos reservados.</p>
+    </div>
+  </footer>
+</body>
+</html>
