@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MiniCraft</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main>
+    <h1>MiniCraft</h1>
+    <p>
+      Clique esquerdo para colocar bloco, clique direito para remover.<br />
+      WASD para mover a câmera, roda do mouse para trocar o bloco.
+    </p>
+    <div class="hud">
+      <span id="selectedLabel">Bloco: Grama</span>
+    </div>
+    <canvas id="game" width="960" height="540"></canvas>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>
